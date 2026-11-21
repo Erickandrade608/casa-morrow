@@ -5,7 +5,7 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - main
+      - principal
 
 jobs:
   build:
@@ -28,9 +28,11 @@ jobs:
 
       - name: Configurar Android SDK
         uses: android-actions/setup-android@v3
-
-      - name: Instalar SDK
-        run: sdkmanager "platforms;android-36" "build-tools;36.0.0"
+        with:
+          packages: |
+            platform-tools
+            platforms;android-36
+            build-tools;36.0.0
 
       - name: Instalar dependências
         run: npm install
