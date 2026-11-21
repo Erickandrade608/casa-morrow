@@ -27,14 +27,15 @@ jobs:
           java-version: 21
 
       - name: Configurar Android SDK
-        uses: android-actions/setup-android@v3
+        uses: android-actions/setup-android@v4
         with:
-          packages: |
-            platform-tools
-            platforms;android-36
-            build-tools;36.0.0
+          packages: 'platform-tools'
 
-      - name: Instalar dependências
+      - name: Instalar plataformas Android
+        run: |
+          sdkmanager --install "platforms;android-36" "build-tools;36.0.0"
+
+      - name: Instalar dependencias
         run: npm install
 
       - name: Criar projeto Android
